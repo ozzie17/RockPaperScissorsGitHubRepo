@@ -8,35 +8,94 @@ return options[random];
 // write a function that plays a single round of Rock paper scissors that takes
 // two selections, playerSelection and computerSelection
 
-function playRound() {
-    const playerSelection = prompt("What do you choose?");
+const rockBtn = document.querySelector('#rockBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const scisButton = document.querySelector('#scisButton');
+
+const body = document.body;
+const div = document.createElement('div');
+const divTwo = document.createElement('div');
+let count = 0;
+
+
+rockBtn.onclick = () => rockPlayRound();
+paperBtn.onclick = () => paperPlayRound();
+scisButton.onclick = () => scissorsPlayRound();
+
+
+function rockPlayRound() {
+    // const playerSelection = prompt("What do you choose?");
     const computerSelection = computerPlay();
     
-      if((playerSelection.toLowerCase() === "rock" && computerSelection === "Scissors")||
-         (playerSelection.toLowerCase() === "paper" && computerSelection === "Rock") ||
-         (playerSelection.toLowerCase() === "scissors" && computerSelection === "Paper")) {
-        return "You won!";
-      }
-    else if((playerSelection.toLowerCase() === "scissors" && computerSelection === "Rock")||
-         (playerSelection.toLowerCase() === "rock" && computerSelection === "Paper") ||
-         (playerSelection.toLowerCase() === "paper" && computerSelection === "Scissors")){
-      return "You lose!";
+      if(computerSelection === "Scissors") { 
+        div.textContent = "You won!";
+        count += 1;
+        divTwo.textContent = "Your winning score: " + count;
+        if(count === 5){ divTwo.textContent = "Congratulations you won the game!"};
     }
-    else if(playerSelection.toLowerCase() === computerSelection.toLowerCase()){
-      return "You tied, you both selected the same option!";
+
+    else if(computerSelection === "Paper")
+    {
+      div.textContent = "You lose!";
+    }
+    else if(computerSelection === "Rock"){
+      div.textContent = "You tied, you both selected the same option!";
     }
     else{
-      return "Invalid input, please try again";
+      div.textContent = "Invalid input, please try again";
     }
+    body.append(div, divTwo);
+  }
+
+  function paperPlayRound() {
+    // const playerSelection = prompt("What do you choose?");
+
+    const computerSelection = computerPlay();
+    
+      if(computerSelection === "Rock") {
+        div.textContent = "You won!";
+        count += 1;
+        divTwo.textContent = "Your winning score: " + count;
+        if(count === 5){ divTwo.textContent = "Congratulations you won the game!"}
+      }
+    else if (computerSelection === "Scissors"){
+      div.textContent = "You lose!";
+    }
+    else if(computerSelection === "Paper"){
+      div.textContent = "You tied, you both selected the same option!";
+    }
+    else{
+      div.textContent = "Invalid input, please try again";
+    }
+    body.append(div, divTwo);
+  }
+
+  function scissorsPlayRound() {
+    // const playerSelection = prompt("What do you choose?");
+
+    const computerSelection = computerPlay();
+    
+      if(computerSelection === "Paper") {
+        div.textContent = "You won!";
+        count += 1;
+        divTwo.textContent = "Your winning score: " + count;
+        if(count === 5){ divTwo.textContent = "Congratulations you won the game!"}
+      }
+    else if(computerSelection === "Rock"){
+      div.textContent = "You lose!";
+    }
+    else if(computerSelection === "Scissors"){
+      div.textContent = "You tied, you both selected the same option!";
+    }
+    else{
+      div.textContent = "Invalid input, please try again";
+    }
+    body.append(div, divTwo);
   }
   
-  function game(){
-    for(let i = 0; i < 5; i++){
-        console.log(playRound());
-    }
-  }
-  
-  console.log(game());
+
+
+
 
 
 
